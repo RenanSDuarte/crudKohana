@@ -12,7 +12,7 @@ class Controller_Acesso extends Controller {
     public function action_login()
     {
         if (HTTP_Request::POST == $this->request->method()) {
-
+            
             // Parametros recebidos do form
             $usuario = $this->request->post('usuario');
             $senha   = $this->request->post('senha');
@@ -22,30 +22,30 @@ class Controller_Acesso extends Controller {
 
             // Se não existir erro é sinal que autenticou corretamente
             if ($user) {
+                $this->redirect('');
+                // $permissao = Permissao::factory('Nome_do_Sistema',$usuario);
 
-                $permissao = Permissao::factory('Nome_do_Sistema',$usuario);
+                // if ($permissao->loaded()) {
 
-                if ($permissao->loaded()) {
+                //     $this->redirect('admin');
+                // }
+                // else {
 
-                    $this->redirect('admin');
-                }
-                else {
-
-                    $this->session->set('msg.text', 'Usuário sem acesso.');
-                    $this->redirect('');
-                }
+                //     $this->session->set('msg.text', 'Usuário sem acesso.');
+                //     $this->redirect('');
+                // }
             }
             else {
 
-
+                $this->redirect('');
                 $this->session->set('msg.text', 'Usuário ou senha incorretos');
             }
         }
         else {
-
             // Se não passar via post retorna pra tela de login
-            $this->redirect('acesso');
+            //$this->redirect('acesso');
         }
+        die();
     }
 
     public function action_logout()

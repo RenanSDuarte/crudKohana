@@ -44,11 +44,7 @@ class Controller_Welcome extends Controller {
 		if ($users->loaded()) {
 			$view->conteudo = View::factory('_editar');
 			$view->conteudo->user = $users;
-		}
-		else
-		{
-			
-		}
+		}	
 
 		$this->response->body($view);
 	}
