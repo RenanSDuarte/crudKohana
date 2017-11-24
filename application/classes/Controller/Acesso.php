@@ -23,6 +23,7 @@ class Controller_Acesso extends Controller {
             // Se não existir erro é sinal que autenticou corretamente
             if ($user) {
                 $this->redirect('');
+                
                 // $permissao = Permissao::factory('Nome_do_Sistema',$usuario);
 
                 // if ($permissao->loaded()) {
