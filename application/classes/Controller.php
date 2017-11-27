@@ -7,11 +7,8 @@ public function before()
    		//parent::__construct($request,$response);
 		
         $this->session = Session::instance();
-        // $this->session->set('msg.title', 'Acesso negado');
-        // $this->session->set('msg.text', 'É necessário efetuar login para visualizar esta página');
-
-
         
+
 
         // Define o controller e action
         define('CONTROLLER',$this->request->controller());

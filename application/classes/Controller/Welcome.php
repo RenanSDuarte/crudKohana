@@ -2,7 +2,7 @@
 
 class Controller_Welcome extends Controller {
 
-	public $view = 'index';
+
 	
 	public function before()
 	{
