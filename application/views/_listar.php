@@ -18,8 +18,8 @@
     				<td><?= $value->nome?></td>
     				<td><?= $value->idade?></td>
     				<td><?= $value->descricao?></td>
-					<td><?=HTML::Anchor('Welcome/cadastrar/'.$value->id,'<span class="glyphicon glyphicon-pencil"></span>')?></td>
-    				<td><?=HTML::Anchor('Welcome/deletar/'.$value->id,'<span class="glyphicon glyphicon-remove-sign"></span>')?></td>
+					<td><?=HTML::Anchor('Welcome/cadastrar/'.$value->id,'<span class="glyphicon glyphicon-pencil" style="color: #2e3033;"></span>')?></td>
+    				<td><?=HTML::Anchor('Welcome/deletar/'.$value->id,'<span class="glyphicon glyphicon-remove-sign" style="color: #2e3033;"></span>')?></td>
     			</tr>
     		<?php } ?>
     	</tbody>

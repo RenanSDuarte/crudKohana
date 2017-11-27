@@ -3,7 +3,7 @@
 class Controller_Acesso extends Controller {
 
     public function action_index() {
-        $view = Login::factory('Login - Gestão de ', 'Gestão de ');
+        $view = Login::factory('Login - Gestão de CRUD', 'Gestão de CRUD');
         $view->titulo = '';
         $view->conteudo = '';
         $this->response->body($view);
@@ -22,8 +22,9 @@ class Controller_Acesso extends Controller {
 
             // Se não existir erro é sinal que autenticou corretamente
             if ($user) {
+
                 $this->redirect('');
-                
+
                 // $permissao = Permissao::factory('Nome_do_Sistema',$usuario);
 
                 // if ($permissao->loaded()) {
@@ -38,7 +39,7 @@ class Controller_Acesso extends Controller {
             }
             else {
 
-                $this->redirect('');
+                $this->redirect('Acesso');
                 $this->session->set('msg.text', 'Usuário ou senha incorretos');
             }
         }
@@ -46,7 +47,6 @@ class Controller_Acesso extends Controller {
             // Se não passar via post retorna pra tela de login
             //$this->redirect('acesso');
         }
-        die();
     }
 
     public function action_logout()
@@ -54,6 +54,6 @@ class Controller_Acesso extends Controller {
 
         // Desloga de todos os sistemas!!!
         Auth::instance()->logout();
-        $this->redirect('');
+        $this->redirect('Acesso');
     }
 }

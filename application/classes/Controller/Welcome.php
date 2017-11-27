@@ -61,22 +61,6 @@ class Controller_Welcome extends Controller {
 
 	}
 
-	public function action_editar()
-	{
-	
-		
-
-		// $view = View::factory('index');
-		
-		// $view->titulo = 'Crud - Editor';
-		// $view->conteudo = View::factory('_editar');
-		
-		
-
-		// $view->conteudo->user = $user;
-		// $this->response->body($view);
-
-	}
 
 	public function action_update()
 	{	
