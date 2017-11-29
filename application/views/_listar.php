@@ -1,13 +1,10 @@
 <?php defined('SYSPATH') or die('No direct script access.'); ?>
 <div class="container">
-    <div class="form-card">
-
-                <input id="filtro-nome" placeholder="Pesquisar" type="text" class="form-control"/>
-    </div>
+        
     <div class="form-card">
     <h1>Visualizador de Dados.</h1>
 
-    <table class="table table-bordered">
+    <table class="table table-bordered table-hover" id="tabelaDados">
     	<thead>
     		<tr>
     			<th style="text-align:center;">Nome</th>
@@ -31,27 +28,22 @@
 	</table>
     </div>
 
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
 
 <script>
-    $(function(){
-    $("#tabela input").keyup(function(){        
-        var index = $(this).parent().index();
-        var nth = "#tabela td:nth-child("+(index+1).toString()+")";
-        var valor = $(this).val().toUpperCase();
-        $("#tabela tbody tr").show();
-        $(nth).each(function(){
-            if($(this).text().toUpperCase().indexOf(valor) < 0){
-                $(this).parent().hide();
-            }
-        });
-    });
- 
-    $("#tabela input").blur(function(){
-        $(this).val("");
-    }); 
+ $(document).ready(function(){
+    $('#tabelaDados').DataTable({
+        "language": {
+            "lengthMenu": "Mostrar _MENU_ registros por páginas.",
+            "zeroRecords": "Nenhum registro encontrado.",
+            "info": "Mostrar _PAGE_ de _PAGES_ páginas.",
+            "infoEmpty": "Nenhum registro disponível.",
+            "infoFiltered": "(filtrado de _MAX_ registros.)",
+            "paginate": {"previous":"Anterior", "next": "Próximo"}
+        }
+      }  );
 });
-
-
-Read more: http://www.linhadecodigo.com.br/artigo/3511/criando-um-filtro-automatico-nas-colunas-de-uma-tabela-html.aspx#ixzz4zeqOh9Rd
 </script>
 </div>

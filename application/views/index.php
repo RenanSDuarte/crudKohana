@@ -41,7 +41,9 @@
 		<section class="subtitle">
 			<div class="container">
                 <ol class="breadcrumb breadcrumb-sca">
-                    <li><a href="index"><span class="glyphicon glyphicon-home"></span></a></li>
+                    <li>
+					<?=HTML::anchor('', '<span class="glyphicon glyphicon-home"></span>')?>
+                   </li>
                     <li class='active'><?=$titulo?></li>
                 </ol>
 

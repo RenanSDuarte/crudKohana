@@ -4,19 +4,19 @@ class Controller_Welcome extends Controller {
 
 
 	
-	public function before()
-	{
-		// CASO DESEJE TRABALHO COM TEMPLATE, PODE SER UTILIZADO DESTA FORMA PARA ECONOMIZAR LINHAS
-		// MAS, CASO NESTE CONTROLLER AJA ALGUMA AÇÃO QUE NAO PRECISE DO TEMPLATE, COLOQUE ESTE CODIGO NA ACTION
-		//  $view = View::Factory('index');
-		//  $view->titulo = 'Titulo';
-		//
+	// public function before()
+	// {
+	// 	// CASO DESEJE TRABALHO COM TEMPLATE, PODE SER UTILIZADO DESTA FORMA PARA ECONOMIZAR LINHAS
+	// 	// MAS, CASO NESTE CONTROLLER AJA ALGUMA AÇÃO QUE NAO PRECISE DO TEMPLATE, COLOQUE ESTE CODIGO NA ACTION
+	// 	//  $view = View::Factory('index');
+	// 	//  $view->titulo = 'Titulo';
+	// 	//
 
-	// 	// Instancia a view padrão (template)
-	// 	$this->view = View::Factory('index');
-	// 	// Cria um título para a página
-	// 	$this->view->titulo = 'Home';
-	 }
+	// // 	// Instancia a view padrão (template)
+	// // 	$this->view = View::Factory('index');
+	// // 	// Cria um título para a página
+	// // 	$this->view->titulo = 'Home';
+	//  }
 
 	public function action_index()
 	{
@@ -27,6 +27,7 @@ class Controller_Welcome extends Controller {
 		$view->titulo = 'CRUD';
 		$view->conteudo = View::factory('_listar');
 		
+
 		$view->conteudo->user = $users;
 		$this->response->body($view);
 	}
@@ -44,7 +45,7 @@ class Controller_Welcome extends Controller {
 		if ($users->loaded()) {
 			$view->conteudo = View::factory('_editar');
 			$view->conteudo->user = $users;
-		}	
+		}
 
 		$this->response->body($view);
 	}
@@ -56,6 +57,9 @@ class Controller_Welcome extends Controller {
 		$users->values($_POST);
 
 		$users->save();
+
+		$this->session->set('msg.title','Novo Usuário');
+		$this->session->set('msg.text','Usuario cadastrado com Sucesso.' );
 
 		$this->redirect('');
 

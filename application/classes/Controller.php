@@ -2,13 +2,12 @@
 
 abstract class Controller extends Kohana_Controller {
 
-public function before()
+	public function before()
 	{
    		//parent::__construct($request,$response);
 		
         $this->session = Session::instance();
         
-
 
         // Define o controller e action
         define('CONTROLLER',$this->request->controller());
@@ -29,7 +28,7 @@ public function before()
             // Opá, precisa de login para acessar
             if ($permissao->required()) {
 
-                $this->session->set('msg.text', 'É necessário efetuar login para visualizar esta página');
+                
                 $this->redirect('Acesso/login');
             }
         }
