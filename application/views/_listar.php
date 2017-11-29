@@ -1,6 +1,11 @@
 <?php defined('SYSPATH') or die('No direct script access.'); ?>
 <div class="container">
-        
+    <div class="form-card" style="margin-bottom: 15px;">
+        <div >
+                <?= HTML::Anchor('Welcome/cadastrar/', '<button type="button" class="btn btn-primary">Novo</button>'); ?>
+            </div>
+    </div>
+
     <div class="form-card">
     <h1>Visualizador de Dados.</h1>
 
@@ -36,12 +41,7 @@
  $(document).ready(function(){
     $('#tabelaDados').DataTable({
         "language": {
-            "lengthMenu": "Mostrar _MENU_ registros por páginas.",
-            "zeroRecords": "Nenhum registro encontrado.",
-            "info": "Mostrar _PAGE_ de _PAGES_ páginas.",
-            "infoEmpty": "Nenhum registro disponível.",
-            "infoFiltered": "(filtrado de _MAX_ registros.)",
-            "paginate": {"previous":"Anterior", "next": "Próximo"}
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
         }
       }  );
 });

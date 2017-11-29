@@ -28,7 +28,7 @@ abstract class Controller extends Kohana_Controller {
             // Opá, precisa de login para acessar
             if ($permissao->required()) {
 
-                
+                $this->session->set('msg.text', 'É necessário efetuar login para visualizar esta página');
                 $this->redirect('Acesso/login');
             }
         }

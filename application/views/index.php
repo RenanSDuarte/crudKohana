@@ -21,8 +21,7 @@
 
 		<!-- Inicio menu -->
 		<ul class="sca-menu">
-			<li><?=HTML::Anchor('Welcome/cadastrar','Cadastrar')?></li>
-			<li><?=HTML::Anchor('','Visualizar')?></li>
+			<li><?=HTML::Anchor('','Crud')?></li>
 		</ul>
 	</div>
 

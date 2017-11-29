@@ -40,9 +40,11 @@ class Controller_Welcome extends Controller {
 		$view->titulo = 'Crud - Cadastrar';
 
 		$view->conteudo = View::factory('_cadastrar');
+
 		$id = $this->request->param('id');
 		$users = ORM::factory('Crud', $id);
 		if ($users->loaded()) {
+			$view->titulo = 'Crud - Editar';
 			$view->conteudo = View::factory('_editar');
 			$view->conteudo->user = $users;
 		}
@@ -52,7 +54,16 @@ class Controller_Welcome extends Controller {
 
 	public function action_salvar()
 	{
-		$users = ORM::factory('Crud');
+		$users = ORM::factory('Crud')->where('nome', '=', $_POST['nome'])->find();
+
+
+
+		if ($users->loaded()) {
+			
+			$this->session->set('msg.title','Novo Usuário');
+			$this->session->set('msg.text','Usuário já existe.' );
+			$this->redirect('');
+		}
 
 		$users->values($_POST);
 
@@ -71,10 +82,21 @@ class Controller_Welcome extends Controller {
 		$id = $_POST['id'];
 
 		$users = ORM::factory('Crud', $id);
+		$user = ORM::factory('Crud')->where('nome', '=', $_POST['nome'])->find();
+
+		if ($user->loaded()) {
+			
+			$this->session->set('msg.title','Editar');
+			$this->session->set('msg.text','Usuário já existe.' );
+			$this->redirect('');
+		}
 
 		$users->values($_POST);
 
 		$users->save();
+
+		$this->session->set('msg.title','Editar');
+		$this->session->set('msg.text','Usuário editado com Sucesso.' );
 
         $this->redirect('');
 
@@ -85,6 +107,9 @@ class Controller_Welcome extends Controller {
 		$user = ORM::factory('Crud', $id);
 		
 		$user->delete();
+
+		$this->session->set('msg.title','Deletar');
+		$this->session->set('msg.text','Usuário deletado com Sucesso.' );
 
 		$this->redirect('');
 	}
