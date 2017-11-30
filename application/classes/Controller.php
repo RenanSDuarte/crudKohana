@@ -29,7 +29,7 @@ abstract class Controller extends Kohana_Controller {
             if ($permissao->required()) {
 
                 $this->session->set('msg.text', 'É necessário efetuar login para visualizar esta página');
-                $this->redirect('Acesso/login');
+                $this->redirect('Acesso');
             }
         }
         else {
