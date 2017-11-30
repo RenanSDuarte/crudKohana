@@ -20,14 +20,17 @@ class Controller_Welcome extends Controller {
 
 	public function action_index()
 	{
+		// coloco todos os usuarios em $users
 		$users = ORM::factory('Crud')->find_all();
 		
-
+		// chamo a view index colocando em $view
 		$view = View::factory('index');
+		// O titulo do da view
 		$view->titulo = 'CRUD';
+		//chamando a view que ficara no conteudo
 		$view->conteudo = View::factory('_listar');
 		
-
+		// na view do conteudo tem uma variavel(user) que recebe todos os usuarios que estão em users
 		$view->conteudo->user = $users;
 		$this->response->body($view);
 	}
@@ -41,8 +44,13 @@ class Controller_Welcome extends Controller {
 
 		$view->conteudo = View::factory('_cadastrar');
 
+		// Da um requesta em um parametro com o nome id
 		$id = $this->request->param('id');
+
+		// o $users recebe os usuarios com o parametro id
 		$users = ORM::factory('Crud', $id);
+
+		// se algum algum cadastro tiver aquele id ele ira para a view de editar e não cadastrar
 		if ($users->loaded()) {
 			$view->titulo = 'Crud - Editar';
 			$view->conteudo = View::factory('_editar');
@@ -54,6 +62,7 @@ class Controller_Welcome extends Controller {
 
 	public function action_salvar()
 	{
+		// busca no banco os usuarios para salvar, se o usuario já existir no if a baixo ele denuncia e volta para a view de listagem
 		$users = ORM::factory('Crud')->where('nome', '=', $_POST['nome'])->find();
 
 
@@ -65,8 +74,10 @@ class Controller_Welcome extends Controller {
 			$this->redirect('');
 		}
 
+		//pega os valores
 		$users->values($_POST);
 
+		//salva os valores no banco
 		$users->save();
 
 		$this->session->set('msg.title','Novo Usuário');
@@ -79,20 +90,16 @@ class Controller_Welcome extends Controller {
 
 	public function action_update()
 	{	
+		//pega o id no banco
 		$id = $_POST['id'];
 
+		// Puxa no banco os usuarios com o id dado
 		$users = ORM::factory('Crud', $id);
-		$user = ORM::factory('Crud')->where('nome', '=', $_POST['nome'])->find();
 
-		if ($user->loaded()) {
-			
-			$this->session->set('msg.title','Editar');
-			$this->session->set('msg.text','Usuário já existe.' );
-			$this->redirect('');
-		}
-
+		//pega os valores colocar
 		$users->values($_POST);
 
+		//salva os novos dados
 		$users->save();
 
 		$this->session->set('msg.title','Editar');
@@ -103,9 +110,13 @@ class Controller_Welcome extends Controller {
 	}
 	public function action_deletar()
 	{
+		//faz o requerimento de um parametro com o nome id
 		$id = $this->request->param('id');
+
+		//puxa os usuarios com o id do parametro
 		$user = ORM::factory('Crud', $id);
 		
+		//deleta o usuario com o id dado
 		$user->delete();
 
 		$this->session->set('msg.title','Deletar');

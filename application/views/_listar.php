@@ -1,13 +1,12 @@
 <?php defined('SYSPATH') or die('No direct script access.'); ?>
 <div class="container">
-    <div class="form-card" style="margin-bottom: 15px;">
-        <div >
-                <?= HTML::Anchor('Welcome/cadastrar/', '<button type="button" class="btn btn-primary">Novo</button>'); ?>
-            </div>
-    </div>
 
     <div class="form-card">
     <h1>Visualizador de Dados.</h1>
+    </br>
+    <div >
+                <?= HTML::Anchor('Welcome/cadastrar/', '<button type="button" class="btn btn-primary" style="margin-bottom: 15px;" >Novo</button>'); ?>
+            </div>
 
     <table class="table table-bordered table-hover" id="tabelaDados">
     	<thead>
@@ -20,6 +19,7 @@
     		</tr>
     	</thead>
     	<tbody>
+            <!-- /Listo no foreach todos os usuarios coloando no $value e mostrando em uma tabela -->
     		<?php foreach ($user as $key =>  $value) { ?>
     			<tr>
     				<td class = "col-sm-4" align="center"><?= $value->nome?></td>
